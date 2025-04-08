@@ -1,0 +1,17 @@
+{
+    "name": "user/geo",
+    "type": "project",
+    "require": {
+        "tecnickcom/tcpdf": "^6.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "User\\Geo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Balduino Geovane"
+        }
+    ]
+}
