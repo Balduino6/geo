@@ -98,341 +98,340 @@
 </head>
 <body>
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #f1f1f1;
-}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
 
 
-.topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        height: 120px;
-        background-color: #333;
-        color: white;
-        padding: 10px 20px;
-        position: fixed;
-        top: 0;
-        z-index: 1000;
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 120px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
 
-    }
+        .search-box {
+            flex-grow: 1; /* Faz a caixa de pesquisa crescer para ocupar o espaço central */
+            display: flex;
+            justify-content: center; /* Centraliza o conteúdo da caixa de pesquisa */
+            margin: 0 20px; /* Margem para afastar dos outros elementos */
+        }
 
-    .search-box {
-        flex-grow: 1; /* Faz a caixa de pesquisa crescer para ocupar o espaço central */
-        display: flex;
-        justify-content: center; /* Centraliza o conteúdo da caixa de pesquisa */
-        margin: 0 20px; /* Margem para afastar dos outros elementos */
-    }
+        .search-box form {
+            display: flex;
+            width: 50%; /* Define uma largura fixa ou relativa para a caixa de pesquisa */
+        }
 
-    .search-box form {
-        display: flex;
-        width: 50%; /* Define uma largura fixa ou relativa para a caixa de pesquisa */
-    }
+        .search-box input[type="text"] {
+            flex-grow: 1;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #444;
+            border-radius: 4px 0 0 4px;
+            background-color: #575757;
+            color: white;
+        }
 
-    .search-box input[type="text"] {
-        flex-grow: 1;
-        padding: 12px;
-        font-size: 16px;
-        border: 2px solid #444;
-        border-radius: 4px 0 0 4px;
-        background-color: #575757;
-        color: white;
-    }
+        .search-box button {
+            padding: 12px 20px;
+            border: 2px solid #575757;
+            border-radius: 0 4px 4px 0;
+            background-color: #444;
+            color: white;
+            cursor: pointer;
+        }
 
-    .search-box button {
-        padding: 12px 20px;
-        border: 2px solid #575757;
-        border-radius: 0 4px 4px 0;
+        .topbar .search-box button:hover {
+            background-color: #575757; /* Cor mais escura no hover */
+            border-color: #444; /* Sincroniza a cor da borda no hover */
+        }
+
+        .topbar .user-info {
+            display: flex;
+            align-items: center; /* Centraliza verticalmente */
+            margin-left: auto; /* Empurra para a direita */
+            margin-right: 20px;
+        }
+
+        .topbar .user-info .username {
+            margin-right: 15px; /* Espaçamento entre nome e o botão de sair */
+            font-size: 18px;
+            color: white;
+        }
+
+        .topbar .user-info a {
+
+            color: whitesmoke;
+            text-decoration: none;
+            font-size: 22px;
+            transition: color 0.3s;
+            padding: 1px;
+            border-radius: 5%;
+            margin-right: 30px;
+            display: flex;
+
+            align-items: center;
+        }
+
+        .topbar .user-info a:hover{
+            color: whitesmoke;
+            /* border-top: 5px solid #ddd; */
+            animation: 1s;
+            transition: .1s;
+        }
+
+        .topbar .user-info a i{
+            margin-left: 5px;
+        }
+
+        /* .topbar .user-info img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            margin-right: 17px;
+        } */
+
+        .perfil-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+    
+        .topbar .logo{
+            width: 200px;
+            /* height: 100px; */
+            /* border: solid 1px red; */
+            text-align: center;
+            margin-left: 20px;      
+        }
+
+        .topbar .logo img {
+            width: 185px;
+            /* height: 100px; */
+            border-radius: 5%;
+            /* border: solid 1px red; */
+        }
+
+    .sidebar {
+        width: 250px;
         background-color: #444;
         color: white;
-        cursor: pointer;
+        padding-top: 60px;
+        position: fixed;
+        height: 100%;
+        top: 0;
+        padding-left: 20px;
+        padding-top: 80px;
+        overflow-y: auto;
+        transition: .2s;
+        
     }
 
-    .topbar .search-box button:hover {
-        background-color: #575757; /* Cor mais escura no hover */
-        border-color: #444; /* Sincroniza a cor da borda no hover */
-    }
-
-    .topbar .user-info {
-        display: flex;
-        align-items: center; /* Centraliza verticalmente */
-        margin-left: auto; /* Empurra para a direita */
-        margin-right: 20px;
-    }
-
-    .topbar .user-info .username {
-        margin-right: 15px; /* Espaçamento entre nome e o botão de sair */
-        font-size: 18px;
-        color: white;
-    }
-
-    .topbar .user-info a {
-
-        color: whitesmoke;
+    .sidebar a {
+        margin-top: 50px;
         text-decoration: none;
-        font-size: 22px;
-        transition: color 0.3s;
-        padding: 1px;
-        border-radius: 5%;
-        margin-right: 30px;
+        color: white;
         display: flex;
-
         align-items: center;
+        transition: 0.3s;
+        margin-bottom: 5px;
+        font-size: 20px;
+        padding: 20px 4%;
     }
 
-    .topbar .user-info a:hover{
-        color: whitesmoke;
-        /* border-top: 5px solid #ddd; */
-        animation: 1s;
-        transition: .1s;
+    .sidebar a .icon, .sidebar a .txt-icon {
+        font-size: 30px;
+        margin-right: 15px;
     }
 
-    .topbar .user-info a i{
-        margin-left: 5px;
+    .sidebar a:hover {
+        background-color: #575757;
+        transition: 1s;
     }
 
-    /* .topbar .user-info img {
+
+    #servicosSubmenu{
+        transition: 2s;
+    }
+
+    .content {
+        margin-left: 250px;
+        margin-top: 60px;
+        padding: 20px;
+        flex-grow: 1;
+        overflow-y: auto;
+        height: calc(100vh - 60px);
+        /* border: 1px solid red; */
+    }
+
+    .header {
+        text-align: center;
+        color: white;
+        background-size: cover;
+        background-position: center;
+        padding: 50px 0;
+        /* border: 1px solid red; */
+        width: 102%;
+    }
+
+    .headline{
+        /* border: 1px solid red; */
+        margin-top: 100px;
+
+    }
+
+    .headline h2 {
+        margin: 0;
+        font-size: 36px;
+        /* border: 1px solid red; */
+    }
+
+    .headline p {
+        font-size: 19px;
+
+    }
+
+    section h2{
+        width: 100%;
+        font-size: 50px;
+        margin-top: 5%;
+        color: #180F4A;
+        font-family: 'Lobster', cursive;
+        text-align: center;
+    }
+
+    .servicos {
+        display: inline-block;
+        margin-top: 1%;
+        margin-left: 15%;
+        margin-bottom: 8%;
+        /* flex-wrap: wrap; */
+        gap: 20px; 
+        /* justify-content: center; */
+        /* border: 1px solid red; */
+        /* padding: 20px; */
+        text-align: center;
+
+    }
+
+    .card {
+        display: inline-block;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        width: 450px;
+        text-align: center;
+        padding: 60px;
+        margin: 15px;
+        cursor: pointer;
+    } 
+
+    .card:hover{
+        background: #444;
+        color: white;
+        padding: 60px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        transition: 1s;
+
+    }
+
+    .card img {
+        /* width: 100%; */
+        height: auto;
+    }
+
+    .card-text {
+        padding: 20px;
+    }
+
+    /* footer {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        height: 320px;
+    }
+
+    .social-links{
+        padding: 5px;
+
+    }
+
+    .social-links img{
+        width: 30px;
+        height: 30px;
+        display:inline;
+        align-items:left;
+        justify-content:left;
+        transition:0.2s;
         border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        margin-right: 17px;
+        color:black;
+        padding: 10px;
+    }
+
+    .social-links img:hover{
+        transition:ease .2s;
+        padding:20px;
+        background: #575757;
+
+    }
+
+    .qr{
+        margin-left: -1300px;
+        margin-top: -20px;
+        padding: 5px;
+    }
+
+    .qr img{
+        width: 90px;
+        height: 90px;
     } */
 
-    .perfil-img {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        border-radius: 50%;
-    }
 
- 
-    .topbar .logo{
-        width: 200px;
-        /* height: 100px; */
-        /* border: solid 1px red; */
+    .cop {
+        /* background-color: #222; */
+        color: #444;
         text-align: center;
-        margin-left: 20px;      
+        padding: 20px;
+        width: 100%;
+        border-top: solid 1px #ddd;
     }
 
-    .topbar .logo img {
-        width: 185px;
-        /* height: 100px; */
-        border-radius: 5%;
-        /* border: solid 1px red; */
+    .whats {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
     }
 
-.sidebar {
-    width: 250px;
-    background-color: #444;
-    color: white;
-    padding-top: 60px;
-    position: fixed;
-    height: 100%;
-    top: 0;
-    padding-left: 20px;
-    padding-top: 80px;
-    overflow-y: auto;
-    transition: .2s;
-    
-}
-
-.sidebar a {
-    margin-top: 50px;
-    text-decoration: none;
-    color: white;
-    display: flex;
-    align-items: center;
-    transition: 0.3s;
-    margin-bottom: 5px;
-    font-size: 20px;
-    padding: 20px 4%;
-}
-
-.sidebar a .icon, .sidebar a .txt-icon {
-    font-size: 30px;
-    margin-right: 15px;
-}
-
-.sidebar a:hover {
-    background-color: #575757;
-    transition: 1s;
-}
+    .whats img {
+        width: 50px;
+        height: 50px;
+    }
 
 
-#servicosSubmenu{
-    transition: 2s;
-}
+    </style>
 
-.content {
-    margin-left: 250px;
-    margin-top: 60px;
-    padding: 20px;
-    flex-grow: 1;
-    overflow-y: auto;
-    height: calc(100vh - 60px);
-    /* border: 1px solid red; */
-}
-
-.header {
-    text-align: center;
-    color: white;
-    background-size: cover;
-    background-position: center;
-    padding: 50px 0;
-    /* border: 1px solid red; */
-    width: 102%;
-}
-
-.headline{
-    /* border: 1px solid red; */
-    margin-top: 100px;
-
-}
-
-.headline h2 {
-    margin: 0;
-    font-size: 36px;
-    /* border: 1px solid red; */
-}
-
-.headline p {
-    font-size: 19px;
-
-}
-
-section h2{
-    width: 100%;
-    font-size: 50px;
-    margin-top: 5%;
-    color: #180F4A;
-    font-family: 'Lobster', cursive;
-    text-align: center;
-}
-
-.servicos {
-    display: inline-block;
-    margin-top: 1%;
-    margin-left: 15%;
-    margin-bottom: 8%;
-    /* flex-wrap: wrap; */
-    gap: 20px; 
-    /* justify-content: center; */
-    /* border: 1px solid red; */
-    /* padding: 20px; */
-    text-align: center;
-
-}
-
-.card {
-    display: inline-block;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 450px;
-    text-align: center;
-    padding: 60px;
-    margin: 15px;
-    cursor: pointer;
-} 
-
-.card:hover{
-    background: #444;
-    color: white;
-    padding: 60px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-    transition: 1s;
-
-}
-
-.card img {
-    /* width: 100%; */
-    height: auto;
-}
-
-.card-text {
-    padding: 20px;
-}
-
-/* footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    height: 320px;
-}
-
-.social-links{
-    padding: 5px;
-
-}
-
-.social-links img{
-    width: 30px;
-    height: 30px;
-    display:inline;
-    align-items:left;
-    justify-content:left;
-    transition:0.2s;
-    border-radius: 50%;
-    color:black;
-    padding: 10px;
-}
-
-.social-links img:hover{
-    transition:ease .2s;
-    padding:20px;
-    background: #575757;
-
-}
-
-.qr{
-    margin-left: -1300px;
-    margin-top: -20px;
-    padding: 5px;
-}
-
-.qr img{
-    width: 90px;
-    height: 90px;
-} */
-
-
-.cop {
-    /* background-color: #222; */
-    color: #444;
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-    border-top: solid 1px #ddd;
-}
-
-.whats {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-.whats img {
-    width: 50px;
-    height: 50px;
-}
-
-
-</style>
-
-<div class="topbar">
+    <div class="topbar">
         <div class="logo">
             <img src="../assets/logo.png" alt="Logo";>
         </div>
@@ -458,25 +457,25 @@ section h2{
 
     </div>
 
-<div class="sidebar">
-    <a href="funcionario.php"> <span class="icon"><i class="bi bi-house"></i></span>
-    <span class="txt-link">Principal</span></a>
+    <div class="sidebar">
+        <a href="funcionario.php"> <span class="icon"><i class="bi bi-house"></i></span>
+        <span class="txt-link">Principal</span></a>
 
-    <?php
-    // Exibe somente os itens para os quais o funcionário tem permissão.
-    foreach ($available_menus as $menu_key => $menu_html) {
-        if (in_array($menu_key, $menu_permissions)) {
-            echo $menu_html;
+        <?php
+        // Apenas permitidos.
+        foreach ($available_menus as $menu_key => $menu_html) {
+            if (in_array($menu_key, $menu_permissions)) {
+                echo $menu_html;
+            }
         }
-    }
-    ?>
-    
-    <!-- Sempre pode exibir links comuns como "Sair" -->
-    <a href="./logout.php" style="color: white; margin-left: 10px;">
-        <img src="./assets/sair.png" alt="" style="width: 20px;">
-        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>Sair
-    </a>
-</div>
+        ?>
+        
+        <!-- Sempre pode exibir links comuns -->
+        <a href="./logout.php" style="color: white; margin-left: 10px;">
+            <img src="./assets/sair.png" alt="" style="width: 20px;">
+            <span class="icon"><i class="bi bi-box-arrow-right"></i></span>Sair
+        </a>
+    </div>
 
     <div class="content">
         <header class="header" style="background-image: url(../assets/bodyimg.jpg); height: 300px;">
@@ -537,22 +536,6 @@ section h2{
             </div>
         </section>
 
-        <!-- <footer>
-            <h2>Contactos</h2>
-            <p>GEOVANE SERVICES</p>
-            <p>Futungo de Belas, Luanda</p>
-            <p>Tel: 933416260</p>
-            <p>Email: geovaneservices@gmail.com</p>
-            <div class="social-links">
-                <a href="#"><img src="../assets/face.png" alt="Facebook"></a>
-                <a href="#"><img src="../assets/insta.png" alt="Instagram"></a>
-                <a href="https://youtube.com/maykbrito"><img src="../assets/you.png" alt="YouTube"></a>
-            </div>
-            <div class="qr">
-                <img src="../assets/qr.png" alt="QR Code">
-            </div>
-        </footer> -->
-
         <div class="cop">
             <p class="copy">© Todos direitos reservados por <b>GeovaneServices</b></p>
         </div>
@@ -572,5 +555,6 @@ section h2{
             }
         }
     </script>
+
 </body>
 </html>

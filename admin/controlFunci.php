@@ -128,11 +128,12 @@
     }
     /* Conteúdo */
     .content {
-      margin-top: -150px;
+      margin-top: 50px;
       margin-left: 250px;
       padding: 100px 30px 30px;
       transition: margin-left 0.3s;
     }
+   
     .sidebar.collapsed ~ .content {
       margin-left: 80px;
     }
@@ -160,13 +161,7 @@
         margin-bottom: 30px;
     }
 
-        .header{
-            margin-top:250px;
-            /* display: flex; */
-            /* flex-flow: row wrap; */
-            justify-content: center;
-            align-items: center;
-        }
+    
 
         .table-status {
             background: white;
@@ -301,13 +296,27 @@
             width: 100%;
             border-top: solid 1px #ddd;
         }
-            /* Responsividade */
+          
+    /* Responsividade para dispositivos móveis */
     @media (max-width: 768px) {
       .content {
-        margin-left: 0;
+        margin-left: 80px; /* Mantém espaço para a sidebar colapsada */
+        padding: 90px 15px 15px;
       }
       .sidebar {
-        display: none;
+        display: block; /* Não ocultar a sidebar; ela já está colapsada */
+      }
+      .toggle-btn {
+        left: 90px;
+      }
+      .topbar {
+        justify-content: space-around;
+        height: auto;
+        padding: 10px;
+      }
+      .topbar .logo img {
+        width: 120px;
+        height: auto;
       }
     }
     </style>  
@@ -360,13 +369,11 @@
   <!-- Botão de Toggle -->
   <button class="toggle-btn" id="toggleBtn"><i class="bi bi-chevron-left"></i></button>
 
-    
 <div class="content">
-    <header class="header"> 
-        <div class="table-status">
-            <h1>Funcionários Cadastrados</h1>   
-            <table class="table table-borderded">
-                <thead class="thead-dark">
+        <div class="card mt-4 p-3">
+            <h5 class="text-center">Funcionários Cadastrados</h5>   
+            <table class="table table-striped">
+                <thead>
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Nome</th>
@@ -419,7 +426,7 @@
                 </tbody>
             </table>
         </div>
-    </header>
+    
 </div>
     
 <div class="cop">

@@ -127,10 +127,10 @@
             }
             /* Conteúdo */
             .content {
-            margin-top: -150px;
-            margin-left: 250px;
-            padding: 100px 30px 30px;
-            transition: margin-left 0.3s;
+                margin-top: 50px;
+                margin-left: 250px;
+                padding: 100px 30px 30px;
+                transition: margin-left 0.3s;
             }
             .sidebar.collapsed ~ .content {
             margin-left: 80px;
@@ -188,6 +188,7 @@
 
         .cop {
             /* background-color: #222; */
+            margin-top: 400px;
             color: #444;
             text-align: center;
             padding: 20px;
@@ -198,12 +199,25 @@
         /* Responsividade */
         @media (max-width: 768px) {
             .content {
-                margin-left: 0;
+                margin-left: 80px; /* Mantém espaço para a sidebar colapsada */
+                padding: 90px 15px 15px;
             }
             .sidebar {
-                display: none;
+                display: block; /* Não ocultar a sidebar; ela já está colapsada */
             }
+            .toggle-btn {
+                left: 90px;
             }
+            .topbar {
+                justify-content: space-around;
+                height: auto;
+                padding: 10px;
+            }
+            .topbar .logo img {
+                width: 120px;
+                height: auto;
+            }
+        }
     </style>
 
 </head>
@@ -256,12 +270,12 @@
   <button class="toggle-btn" id="toggleBtn"><i class="bi bi-chevron-left"></i></button>
 
     <div class="content">
-        <header class="header"> 
-            <div class="table-status">
-                <h1>Clientes Cadastrados</h1>  
+        
+            <div class="card mt-4 p-3">
+                <h1 class="text-center">Clientes Cadastrados</h1>  
                 <br> 
                 <table class="table table-striped">
-                    <thead class="thead-dark">
+                    <thead>
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Nome</th>
@@ -309,8 +323,7 @@
                     ?>
                 </tbody>            
             </table>
-            </div>
-        </header>
+            </div>     
     </div>
     
     <div class="cop">
